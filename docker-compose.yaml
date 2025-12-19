@@ -47,6 +47,9 @@ services:
     restart: always
     networks:
       - data-portfolio-network
+    environment:
+      BE_HOST: data-portfolio-be
+      BE_PORT: 3004
 
 
 networks:

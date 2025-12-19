@@ -12,6 +12,8 @@ RUN apk add --no-cache curl \
     && mv "$SUPERCRONIC" /usr/local/bin/supercronic
 
 WORKDIR /cron
-COPY job.sh crontab ./
+COPY job.sh crontab entrypoint.sh ./
 
-CMD ["supercronic", "/cron/crontab"]
+RUN chmod +x /cron/job.sh /cron/entrypoint.sh
+
+ENTRYPOINT ["/cron/entrypoint.sh"]
