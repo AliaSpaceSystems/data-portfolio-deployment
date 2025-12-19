@@ -1,0 +1,7 @@
+When launching the docker compose, a container will be created for the cronjob, based on the cron folder.
+Please be sure that job.sh has execute permission.
+
+When changing the configuration files, please exec:
+# docker compose down
+change the needed files..
+# docker compose up --force-recreate -d

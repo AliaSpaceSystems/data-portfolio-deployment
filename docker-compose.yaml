@@ -1,0 +1,58 @@
+version: "3.9"
+services:
+  data-portfolio-fe:
+    image: aliaspace/data-portfolio-fe:1.0.0
+    container_name: data-portfolio-fe-container
+    hostname: data-portfolio
+    restart: always
+    depends_on:
+      - data-portfolio-be
+    ports:
+      - 8090:80
+    networks:
+      - data-portfolio-network
+    volumes:
+      - /data/data-portfolio/front-end/config:/usr/share/nginx/html/config
+
+  data-portfolio-be:
+    image: aliaspace/data-portfolio-be:1.0.0
+    container_name: data-portfolio-be-container
+    restart: always
+    networks:
+      - data-portfolio-network
+    depends_on:
+      - data-portfolio-db
+    ports:
+      - 3004:3000
+    volumes:
+      - /data/data-portfolio/back-end/config/.env:/app/.env
+
+  data-portfolio-db:
+    image: postgres:17-alpine
+    container_name: data-portfolio-db-container
+    restart: always
+    env_file:
+      - /data/data-portfolio/back-end/config/db_credentials.env
+    networks:
+      - data-portfolio-network
+    ports:
+      - "5434:5432"
+    volumes:
+      - /data/data-portfolio/db/:/var/lib/postgresql/data
+
+  data-portfolio-cron:
+    build:
+      context: ./cron
+    container_name: data-portfolio-cron-container
+    restart: always
+    networks:
+      - data-portfolio-network
+
+
+networks:
+    data-portfolio-network:
+      driver: bridge
+      ipam:
+        driver: default
+        config:
+          - subnet: 172.30.0.0/16

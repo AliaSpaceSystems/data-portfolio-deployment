@@ -1,0 +1,1 @@
+0 * * * * /cron/cronjob.sh >> /var/log/cronjob.log 2>&1
