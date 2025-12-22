@@ -41,7 +41,7 @@ services:
       - /data/data-portfolio/db/:/var/lib/postgresql/data
 
   data-portfolio-cron:
-    image: aliaspace/data-portfolio-cron:1.0.0
+    image: data-portfolio-cron:1.0.0
     build:
       context: ./cron
     container_name: data-portfolio-cron-container
