@@ -1,7 +1,39 @@
-When launching the docker compose, a container will be created for the cronjob, based on the cron folder.
-Please be sure that job.sh has execute permission.
+## INSTALL
 
-When changing the configuration files, please exec:
+This app is based on docker. Four (4) docker images will be involved in this app:
+  - data-portfolio-be     (based on express.js and node.js v22.2)
+  - data-portfolio-fe     (based on the Angular framework v20)
+  - data-portfolio-db     (postgresql v17-alpine)
+  - data-portfolio-cron   (auxiliary image to keep the db updated with the data from the STAC catolgue)
+
+To install run:
+$ ./install.sh <version-number>
+
+changing <version-number> with the version number of the app. i.e.: $ ./install.sh 1.0.0
+
+This will create the needed folders and configuration files and pull the needed images.
+
+
+## START app
+
+To start the app:
+$ ./start.sh
+
+This command will launch "docker compose up -d" creating the cron image and mounting the db on the pre created folder.
+
+
+## STOP app
+
+To stop the app:
+$ ./stop.sh
+
+This command will launch "docker compose down" stopping the docker images relative to the app.
+
+
+## Troubleshooting
+
+When changing the configuration files, if no alteration can be seen, please exec:
 # docker compose down
-change the needed files..
+
+than change the needed files and then use:
 # docker compose up --force-recreate -d
