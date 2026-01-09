@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   data-portfolio-fe:
-    image: aliaspace/data-portfolio-fe:1.0.0
+    image: aliaspace/data-portfolio-fe:1.0.1
     container_name: data-portfolio-fe-container
     hostname: data-portfolio
     restart: always

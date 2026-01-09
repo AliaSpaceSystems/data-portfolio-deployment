@@ -1,4 +1,5 @@
 {
   "backendUrl": "",
-  "baseHref": "/"
+  "baseHref": "/",
+  "backEndErrorMessage": "We apologise for the inconvenience.<br>There seem to be a problem with the back end connection, which is preventing the page from displaying correctly.<br>"
 }
