@@ -23,7 +23,7 @@ services:
     depends_on:
       - data-portfolio-db
     ports:
-      - 3004:3004
+      - 3004:3000
     volumes:
       - /data/data-portfolio/back-end/config/.env:/app/.env
 
