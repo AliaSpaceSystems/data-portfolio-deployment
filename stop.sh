@@ -8,8 +8,6 @@ echo "  ************************************************************************
 
 echo "  Shutting down DATA PORTFOLIO..."
 
-set -e
-
 if docker compose version >/dev/null 2>&1; then
   echo "Found Docker Compose v2. Ok, continue.."
 else
