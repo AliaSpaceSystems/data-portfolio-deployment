@@ -4,7 +4,7 @@ LOCK=/tmp/update-db.lock
 MAX_RETRIES=3
 TIMEOUT=20
 
-URL="http://${BE_HOST}:${BE_PORT}/datasources/update-db"
+URL="http://${BE_HOST}/datasources/update-db"
 
 # lock
 exec 9>"$LOCK" || exit 1

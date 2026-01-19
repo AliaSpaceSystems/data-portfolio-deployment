@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   data-portfolio-fe:
-    image: aliaspace/data-portfolio-fe:1.0.1
+    image: aliaspace/data-portfolio-fe:1.0.2
     container_name: data-portfolio-fe-container
     hostname: data-portfolio
     restart: always
@@ -15,7 +15,7 @@ services:
       - /data/data-portfolio/front-end/config:/usr/share/nginx/html/config
 
   data-portfolio-be:
-    image: aliaspace/data-portfolio-be:1.0.0
+    image: aliaspace/data-portfolio-be:1.0.1
     container_name: data-portfolio-be-container
     restart: always
     networks:
