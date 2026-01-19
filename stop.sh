@@ -8,7 +8,16 @@ echo "  ************************************************************************
 
 echo "  Shutting down DATA PORTFOLIO..."
 
-docker compose down || { echo "docker compose command not found. Trying with docker compose instead.."; docker-compose down; }
+set -e
+
+if docker compose version >/dev/null 2>&1; then
+  echo "Found Docker Compose v2. Ok, continue.."
+else
+  echo "ERROR: Docker Compose v1 detected. Please use docker compose v2. This is needed for the cron image build command." >&2
+  exit 1
+fi
+
+docker compose down
 
 return_code=$?
 

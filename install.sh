@@ -13,8 +13,17 @@ if [ -z "$1" ]; then
     version="SNAPSHOT"
 fi
 
+set -e
+
+if docker compose version >/dev/null 2>&1; then
+  echo "Found Docker Compose v2. Ok, continue.."
+else
+  echo "ERROR: Docker Compose v1 detected. Please use docker compose v2. This is needed for the cron image build command." >&2
+  exit 1
+fi
+
 echo "Shutting down DATA PORTFOLIO..."
-docker compose down || { echo "docker compose command not found. Trying with docker-compose instead.."; docker-compose down; }
+docker compose down
 
 echo "DATA PORTFOLIO stopped"
 
@@ -38,6 +47,6 @@ echo "cp -R data/data-portfolio/* /data/data-portfolio_${version}/"
 cp -R data/data-portfolio/* /data/data-portfolio_${version}/
 
 echo "Pull images..."
-docker compose pull || { echo "docker compose command not found. Trying with docker-compose instead.."; docker-compose pull; }
+docker compose pull
 
 echo "DATA PORTFOLIO environment ready!"
