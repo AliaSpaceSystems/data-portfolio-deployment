@@ -41,9 +41,10 @@ services:
       - /data/data-portfolio/db/:/var/lib/postgresql/data
 
   data-portfolio-cron:
-    image: data-portfolio-cron:1.0.0
     build:
       context: ./cron
+      tags:
+        - data-portfolio-cron:1.0.0
     container_name: data-portfolio-cron-container
     restart: always
     networks:
